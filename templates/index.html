@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        /* Add fixed size for the preview image */
+        .preview-image {
+            width: 300px; /* Set fixed width */
+            height: 300px; /* Set fixed height */
+            object-fit: cover; /* Maintain aspect ratio, center-crop the image */
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Image for Prediction</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file" class="custom-file-upload">Choose an image</label>
+            <input type="file" id="file" name="file" accept="image/*" onchange="previewImage()" required>
+            <input type="submit" value="Upload Image" class="upload-btn">
+        </form>
+        <div id="preview-container">
+            <h2>Selected Image Preview</h2>
+            <!-- Preview image with fixed size -->
+            <img id="preview-image" src="" alt="Image Preview" class="preview-image" style="display:none;">
+        </div>
+    </div>
+    <script>
+        function previewImage() {
+            const file = document.getElementById('file').files[0];
+            const preview = document.getElementById('preview-image');
+            const previewContainer = document.getElementById('preview-container');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+                previewContainer.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

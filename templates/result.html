@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        /* Styles to make the button match your existing layout */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .upload-again-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .upload-again-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        <h2>Uploaded Image</h2>
+        <img src="{{ url_for('uploaded_file', filename=uploaded_image.split('/')[-1]) }}" alt="Uploaded Image" width="300" class="result-image">
+
+        <h2>Prediction Result</h2>
+        <img src="{{ url_for('result_file', filename=result_image.split('/')[-1]) }}" alt="Result Image" width="300" class="result-image">
+
+        <!-- Button to upload another image -->
+        <div class="button-container">
+            <a href="/" class="upload-again-btn">Upload Another Image</a>
+        </div>
+    </div>
+</body>
+</html>
